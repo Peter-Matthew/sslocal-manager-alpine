@@ -7,19 +7,19 @@ A webpage to manage ss-local
 
 Build via Docker Compose, using the Python Flask framework.
 
-# ssserver-libev
+# ssserver-rust
 A backup image to start ss-server
 
-![Docker Pulls](https://img.shields.io/docker/pulls/petermatthew/ssserver-libev)
-![Docker Image Size](https://img.shields.io/docker/image-size/petermatthew/ssserver-libev)
-![Docker Image Version](https://img.shields.io/docker/v/petermatthew/ssserver-libev)
+![Docker Pulls](https://img.shields.io/docker/pulls/petermatthew/ssserver-rust)
+![Docker Image Size](https://img.shields.io/docker/image-size/petermatthew/ssserver-rust)
+![Docker Image Version](https://img.shields.io/docker/v/petermatthew/ssserver-rust)
 
-Build via Docker Compose, Source Repo: [shadowsocks-libev](https://github.com/shadowsocks/shadowsocks-libev/).
+Build via Docker Compose, Source Repo: [shadowsocks-rust](https://github.com/shadowsocks/shadowsocks-rust/).
 
 ## Step 1
 Clone this repo.
 ```bash
-git clone https://github.com/WilliamPeterMatthew/sslocal-manager.git -b proxy_local
+git clone https://github.com/WilliamPeterMatthew/sslocal-manager-alpine.git -b proxy_local
 ```
 
 ## Step 2
