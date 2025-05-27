@@ -53,7 +53,8 @@ jobs:
           push: true
           tags: |
             ${{ matrix.registry == 'ghcr' && format('ghcr.io/{0}/ssserver-rust:{1}', steps.lowercase-owner.outputs.lower_owner, steps.extract-date.outputs.date) || format('{0}/ssserver-rust:{1}', secrets.DOCKER_USERNAME, steps.extract-date.outputs.date) }}
-            ${{ matrix.registry == 'ghcr' && format('ghcr.io/{0}/ssserver-rust:latest', steps.lowercase-owner.outputs.lower_owner)     || format('{0}/ssserver-rust:latest', secrets.DOCKER_USERNAME) }}
-            ${{ matrix.registry == 'ghcr' && format('ghcr.io/{0}/ssserver-rust:alpine', steps.lowercase-owner.outputs.lower_owner)     || format('{0}/ssserver-rust:alpine', secrets.DOCKER_USERNAME) }}
-            ${{ matrix.registry == 'ghcr' && format('ghcr.io/{0}/ssserver-rust:alpine3', steps.lowercase-owner.outputs.lower_owner)    || format('{0}/ssserver-rust:alpine3', secrets.DOCKER_USERNAME) }}
-            ${{ matrix.registry == 'ghcr' && format('ghcr.io/{0}/ssserver-rust:alpine3.21', steps.lowercase-owner.outputs.lower_owner) || format('{0}/ssserver-rust:alpine3.21', secrets.DOCKER_USERNAME) }}
+            ${{ matrix.registry == 'ghcr' && format('ghcr.io/{0}/ssserver-rust:latest', steps.lowercase-owner.outputs.lower_owner)        || format('{0}/ssserver-rust:latest', secrets.DOCKER_USERNAME) }}
+            ${{ matrix.registry == 'ghcr' && format('ghcr.io/{0}/ssserver-rust:alpine-latest', steps.lowercase-owner.outputs.lower_owner) || format('{0}/ssserver-rust:alpine-latest', secrets.DOCKER_USERNAME) }}
+            ${{ matrix.registry == 'ghcr' && format('ghcr.io/{0}/ssserver-rust:alpine', steps.lowercase-owner.outputs.lower_owner)        || format('{0}/ssserver-rust:alpine', secrets.DOCKER_USERNAME) }}
+            ${{ matrix.registry == 'ghcr' && format('ghcr.io/{0}/ssserver-rust:alpine3', steps.lowercase-owner.outputs.lower_owner)       || format('{0}/ssserver-rust:alpine3', secrets.DOCKER_USERNAME) }}
+            ${{ matrix.registry == 'ghcr' && format('ghcr.io/{0}/ssserver-rust:alpine3.21', steps.lowercase-owner.outputs.lower_owner)    || format('{0}/ssserver-rust:alpine3.21', secrets.DOCKER_USERNAME) }}
