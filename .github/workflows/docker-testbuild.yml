@@ -38,5 +38,5 @@ jobs:
           platforms: linux/amd64,linux/arm64
           push: false
           tags: |
-            sslocal-manager-test:latest
-            sslocal-manager-test:${{ steps.extract-date.outputs.date }}
+            sslocal-manager-test:alpine-latest
+            sslocal-manager-test:alpine-${{ steps.extract-date.outputs.date }}
