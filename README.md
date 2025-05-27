@@ -1,20 +1,18 @@
-# ssserver-rust
-A backup image to start ssserver
+# sslocal-rust
+A backup image to start sslocal
 
-![Docker Pulls](https://img.shields.io/docker/pulls/petermatthew/ssserver-rust)
-![Docker Image Size](https://img.shields.io/docker/image-size/petermatthew/ssserver-rust)
-![Docker Image Version](https://img.shields.io/docker/v/petermatthew/ssserver-rust)
+![Docker Pulls](https://img.shields.io/docker/pulls/petermatthew/sslocal-rust)
+![Docker Image Size](https://img.shields.io/docker/image-size/petermatthew/sslocal-rust)
+![Docker Image Version](https://img.shields.io/docker/v/petermatthew/sslocal-rust)
 
 Build via Docker Compose, Source Repo: [shadowsocks-rust](https://github.com/shadowsocks/shadowsocks-rust/).
 
-> There is a solution to deploy ssserver-rust and ss-manager to the local machine at the same time, located in the branch [proxy_local](https://github.com/WilliamPeterMatthew/sslocal-manager-alpine/tree/proxy_local)
-> 
 > There is a solution to deploy ssserver-rust and sslocal-rust to the local machine at the same time, located in the branch [proxy-rust](https://github.com/WilliamPeterMatthew/sslocal-manager-alpine/tree/proxy-rust)
 
 ## Step 1
 Clone this repo.
 ```bash
-git clone https://github.com/WilliamPeterMatthew/sslocal-manager-alpine.git -b ssserver-rust
+git clone https://github.com/WilliamPeterMatthew/sslocal-manager-alpine.git -b sslocal-rust
 ```
 ## Step 2
 Modify `.ssconfig.json` file like this.
