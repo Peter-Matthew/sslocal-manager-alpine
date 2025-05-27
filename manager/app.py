@@ -6,7 +6,7 @@ app = Flask(__name__)
 
 def get_status():
     try:
-        with open('/var/run/ss-local.pid', 'r') as f:
+        with open('/var/run/sslocal.pid', 'r') as f:
             pid = f.read().strip()
         
         # 检查进程是否存在
@@ -35,12 +35,12 @@ def action():
     
     if running:
         subprocess.run(["kill", pid])
-        os.remove('/var/run/ss-local.pid')
+        os.remove('/var/run/sslocal.pid')
     else:
         subprocess.Popen([
-            "ss-local",
+            "sslocal",
             "-c", "/.ssconfig.json",
-            "-f", "/var/run/ss-local.pid"
+            "-f", "/var/run/sslocal.pid"
         ])
     
     return redirect('/')
