@@ -39,8 +39,9 @@ def action():
     else:
         subprocess.Popen([
             "sslocal",
+            "--log-without-time",
             "-c", "/.ssconfig.json",
-            "-f", "/var/run/sslocal.pid"
+            "--daemonize-pid", "/var/run/sslocal.pid"
         ])
     
     return redirect('/')
