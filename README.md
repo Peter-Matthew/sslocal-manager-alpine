@@ -1,5 +1,5 @@
 # ssserver-rust
-A backup image to start ss-server
+A backup image to start ssserver
 
 ![Docker Pulls](https://img.shields.io/docker/pulls/petermatthew/ssserver-rust)
 ![Docker Image Size](https://img.shields.io/docker/image-size/petermatthew/ssserver-rust)
@@ -7,18 +7,34 @@ A backup image to start ss-server
 
 Build via Docker Compose, Source Repo: [shadowsocks-rust](https://github.com/shadowsocks/shadowsocks-rust/).
 
-> There is a solution to deploy ss-rust and ss-manager to the local machine at the same time, located in the branch [proxy_local](https://github.com/WilliamPeterMatthew/sslocal-manager-alpine/tree/proxy_local)
+> There is a solution to deploy ssserver-rust and ss-manager to the local machine at the same time, located in the branch [proxy_local](https://github.com/WilliamPeterMatthew/sslocal-manager-alpine/tree/proxy_local)
+> 
+> There is a solution to deploy ssserver-rust and sslocal-rust to the local machine at the same time, located in the branch [proxy-rust](https://github.com/WilliamPeterMatthew/sslocal-manager-alpine/tree/proxy-rust)
 
 ## Step 1
 Clone this repo.
 ```bash
 git clone https://github.com/WilliamPeterMatthew/sslocal-manager-alpine.git -b ssserver-rust
 ```
-
 ## Step 2
-Modify or keep the ports in `docker-compose.yml` file (use `docker-compose-prebuild.yml` file if you want to use a pre-build version of the image instead of building locally) .
+Modify `.ssconfig.json` file like this.
+```
+  {
+    "server": "ss.example.com",
+    "server_port": 10080,
+    "local_address": "0.0.0.0",
+    "local_port": 1080,
+    "password": "Password",
+    "timeout": 300,
+    "method": "aes-256-gcm"
+  }
+
+```
 
 ## Step 3
+Modify or keep the ports in `docker-compose.yml` file (use `docker-compose-prebuild.yml` file if you want to use a pre-build version of the image instead of building locally) .
+
+## Step 4
 Run the project by executing the following command in the directory.
 ```bash
 docker-compose up -d
