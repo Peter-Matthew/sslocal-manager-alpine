@@ -1,4 +1,4 @@
-FROM python:3.12-alpine3.21
+FROM alpine:3.21
 
 ENV TZ=Asia/Shanghai
 ENV ARGS=
@@ -12,13 +12,12 @@ RUN echo "https://dl-cdn.alpinelinux.org/alpine/v3.21/community" >> /etc/apk/rep
  && echo "$TZ" > /etc/timezone \
  && rm -rf /var/cache/apk/*
 
-RUN pip install flask
+COPY ./entrypoint.sh /usr/bin/docker-entrypoint.sh
+RUN chmod +x /usr/bin/docker-entrypoint.sh
+ENTRYPOINT ["docker-entrypoint.sh"]
 
-WORKDIR /app
-COPY templates/ /app/templates/
-COPY ./app.py /app/app.py
-RUN chmod +x /app/app.py
+EXPOSE 1080/udp 1080/tcp
 
-EXPOSE 5000 1080/udp 1080/tcp
+STOPSIGNAL SIGINT
 
-CMD ["python", "app.py"]
+CMD [ "sslocal", "--log-without-time", "-c", "/.ssconfig.json" ]
