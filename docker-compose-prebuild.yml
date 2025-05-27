@@ -1,9 +1,9 @@
 version: '3'
 
 services:
-  ss-libev:
-    image: petermatthew/ssserver-libev
-    container_name: ss-libev
+  ss-rust:
+    image: petermatthew/ssserver-rust
+    container_name: ss-rust
     restart: always
     ports:
       - '8388:8388/udp'
