@@ -3,7 +3,7 @@
 
 set -e
 
-if [ "$1" = "ss-server" ]; then
+if [ "$1" = "ssserver" ]; then
     COREVER=$(uname -r | grep -Eo '[0-9].[0-9]+' | sed -n '1,1p')
     CMV=$(echo $COREVER | awk -F '.' '{print $1}')
     CSV=$(echo $COREVER | awk -F '.' '{print $2}')
