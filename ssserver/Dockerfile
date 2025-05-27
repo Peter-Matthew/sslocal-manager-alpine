@@ -16,8 +16,8 @@ COPY ./entrypoint.sh /usr/bin/docker-entrypoint.sh
 RUN chmod +x /usr/bin/docker-entrypoint.sh
 ENTRYPOINT ["docker-entrypoint.sh"]
 
-EXPOSE 1080/udp 1080/tcp
+EXPOSE 8388/udp 8388/tcp
 
 STOPSIGNAL SIGINT
 
-CMD [ "sslocal", "--log-without-time", "-c", "/.ssconfig.json" ]
+CMD [ "ssserver", "--log-without-time", "-a", "nobody", "-c", "/.ssconfig.json" ]
