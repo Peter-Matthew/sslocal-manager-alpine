@@ -27,4 +27,4 @@ EXPOSE 8388/udp 8388/tcp
 
 STOPSIGNAL SIGINT
 
-CMD ["ss-server"]
+CMD ["ssserver"]
