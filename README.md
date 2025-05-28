@@ -20,10 +20,8 @@ git clone https://github.com/WilliamPeterMatthew/sslocal-manager-alpine.git -b s
 Modify `.ssconfig.json` file like this.
 ```
   {
-    "server": "ss.example.com",
-    "server_port": 10080,
-    "local_address": "0.0.0.0",
-    "local_port": 1080,
+    "server": "0.0.0.0",
+    "server_port": 8388,
     "password": "Password",
     "timeout": 300,
     "method": "aes-256-gcm"
