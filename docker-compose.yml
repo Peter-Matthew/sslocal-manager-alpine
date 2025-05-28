@@ -10,3 +10,7 @@ services:
       - '1080:1080/tcp'
     volumes:
       - ./local.ssconfig.json:/.ssconfig.json:ro
+    
+# networks: # 网络配置，需要使用 IPv6 时取消注释
+#   default:
+#     enable_ipv6: true
