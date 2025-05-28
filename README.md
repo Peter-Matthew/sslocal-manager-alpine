@@ -15,11 +15,11 @@ Clone this repo.
 git clone https://github.com/WilliamPeterMatthew/sslocal-manager-alpine.git -b sslocal-rust
 ```
 ## Step 2
-Modify `.ssconfig.json` file like this.
+Modify `local.ssconfig.json` file like this.
 ```
   {
     "server": "ss.example.com",
-    "server_port": 10080,
+    "server_port": 8388,
     "local_address": "0.0.0.0",
     "local_port": 1080,
     "password": "Password",

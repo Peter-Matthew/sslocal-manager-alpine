@@ -9,4 +9,4 @@ services:
       - '1080:1080/udp'
       - '1080:1080/tcp'
     volumes:
-      - ./.ssconfig.json:/.ssconfig.json:ro
+      - ./local.ssconfig.json:/.ssconfig.json:ro
