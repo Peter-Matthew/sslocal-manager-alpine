@@ -23,7 +23,19 @@ git clone https://github.com/WilliamPeterMatthew/sslocal-manager-alpine.git -b p
 ```
 
 ## Step 2
-Modify `.ssconfig.json` file like this.
+Modify `server.ssconfig.json` file like this.
+```
+  {
+    "server": "0.0.0.0",
+    "server_port": 8388,
+    "password": "Password",
+    "timeout": 300,
+    "method": "aes-256-gcm"
+  }
+
+```
+
+And modify `local.ssconfig.json` file like this.
 ```
   {
     "server": "ssserver-rust",
