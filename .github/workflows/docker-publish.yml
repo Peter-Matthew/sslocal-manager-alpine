@@ -52,7 +52,8 @@ jobs:
           platforms: linux/386,linux/amd64,linux/arm/v7,linux/arm64/v8,linux/ppc64le,linux/s390x
           push: true
           tags: |
-            ${{ matrix.registry == 'ghcr' && format('ghcr.io/{0}/sslocal-rust:{1}', steps.lowercase-owner.outputs.lower_owner, steps.extract-date.outputs.date) || format('{0}/sslocal-rust:{1}', secrets.DOCKER_USERNAME, steps.extract-date.outputs.date) }}
+            ${{ matrix.registry == 'ghcr' && format('ghcr.io/{0}/sslocal-rust:{1}', steps.lowercase-owner.outputs.lower_owner, steps.extract-date.outputs.date)        || format('{0}/sslocal-rust:{1}', secrets.DOCKER_USERNAME, steps.extract-date.outputs.date) }}
+            ${{ matrix.registry == 'ghcr' && format('ghcr.io/{0}/sslocal-rust:alpine-{1}', steps.lowercase-owner.outputs.lower_owner, steps.extract-date.outputs.date) || format('{0}/sslocal-rust:alpine-{1}', secrets.DOCKER_USERNAME, steps.extract-date.outputs.date) }}
             ${{ matrix.registry == 'ghcr' && format('ghcr.io/{0}/sslocal-rust:latest', steps.lowercase-owner.outputs.lower_owner)        || format('{0}/sslocal-rust:latest', secrets.DOCKER_USERNAME) }}
             ${{ matrix.registry == 'ghcr' && format('ghcr.io/{0}/sslocal-rust:alpine-latest', steps.lowercase-owner.outputs.lower_owner) || format('{0}/sslocal-rust:alpine-latest', secrets.DOCKER_USERNAME) }}
             ${{ matrix.registry == 'ghcr' && format('ghcr.io/{0}/sslocal-rust:alpine', steps.lowercase-owner.outputs.lower_owner)        || format('{0}/sslocal-rust:alpine', secrets.DOCKER_USERNAME) }}
