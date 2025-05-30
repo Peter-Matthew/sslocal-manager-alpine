@@ -37,6 +37,19 @@ Modify `.ssconfig.json` file like this.
 
 ```
 
+And modify `server.ssconfig.json` file like this.
+```
+  {
+    "server": "0.0.0.0",
+    "server_port": 8388,
+    "password": "Password",
+    "timeout": 300,
+    "method": "aes-256-gcm"
+  }
+
+
+```
+
 ## Step 3
 Modify or keep the ports in `docker-compose.yml` file (use `docker-compose-prebuild.yml` file if you want to use a pre-build version of the image instead of building locally) .
 
