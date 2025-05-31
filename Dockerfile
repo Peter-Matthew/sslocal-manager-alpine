@@ -1,5 +1,6 @@
 FROM alpine:3.21
 
+ENV DNS_ADDRS="114.114.114.114,8.8.8.8"
 ENV TZ=Asia/Shanghai
 ENV ARGS=
 
@@ -20,4 +21,4 @@ EXPOSE 8388/udp 8388/tcp
 
 STOPSIGNAL SIGINT
 
-CMD [ "ssserver", "--log-without-time", "-a", "nobody", "-c", "/.ssconfig.json" ]
+CMD [ "ssserver", "--log-without-time", "-c", "/.ssconfig.json" ]
