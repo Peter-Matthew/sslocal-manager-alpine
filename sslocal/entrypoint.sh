@@ -15,6 +15,17 @@ if [ "$1" = "sslocal" -o "$1" = "ssserver" -o "$1" = "ssmanager" -o "$1" = "ssse
     else
         echo >&3 "$0: No configuration files found in /, skipping configuration"
     fi
+
+    COREVER=$(uname -r | grep -Eo '[0-9].[0-9]+' | sed -n '1,1p')
+    CMV=$(echo $COREVER | awk -F '.' '{print $1}')
+    CSV=$(echo $COREVER | awk -F '.' '{print $2}')
+
+    if [ $(echo "$CMV >= 3" | bc) ]; then
+        if [ $(echo "$CSV > 7" | bc) ]; then
+        TFO='--tcp-fast-open'
+        fi
+    fi 
+    RT_ARGS="-U $TFO $ARGS"
 fi
 
-exec "$@"
+exec $@ $RT_ARGS
