@@ -32,7 +32,8 @@ Modify `.ssconfig.json` file like this.
     "local_port": 1080,
     "password": "Password",
     "timeout": 300,
-    "method": "aes-256-gcm"
+    "method": "aes-256-gcm",
+    "mode": "tcp_only"
   }
 
 ```
@@ -44,7 +45,8 @@ And modify `server.ssconfig.json` file like this.
     "server_port": 8388,
     "password": "Password",
     "timeout": 300,
-    "method": "aes-256-gcm"
+    "method": "aes-256-gcm",
+    "mode": "tcp_only"
   }
 
 
