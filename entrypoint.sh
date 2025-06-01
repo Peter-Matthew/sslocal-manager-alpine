@@ -29,7 +29,7 @@ if [ "$1" = "ssserver" ]; then
         TFO='--tcp-fast-open'
         fi
     fi 
-    RT_ARGS="--log-without-time -c /.ssconfig.json -a nobody -U $DNS $TFO $ARGS"
+    RT_ARGS="--log-without-time -c /.ssconfig.json -a nobody $DNS $TFO $ARGS"
 fi
 
 exec $@ $RT_ARGS
