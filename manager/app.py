@@ -48,14 +48,17 @@ def action():
         subprocess.run(["kill", pid])
         os.remove('/var/run/sslocal.pid')
     else:
-        subprocess.Popen([
+        cmd = [
             "sslocal",
             "--log-without-time",
             "-c", "/.ssconfig.json",
-            "--daemonize-pid", "/var/run/sslocal.pid",
-            TFO,
-            ARGS,
-        ])
+            "--daemonize-pid", "/var/run/sslocal.pid"
+        ]
+        if TFO:
+            cmd.append(TFO)
+        if ARGS:
+            cmd.extend(ARGS.split())
+        subprocess.Popen(cmd)
     
     return redirect('/')
 
