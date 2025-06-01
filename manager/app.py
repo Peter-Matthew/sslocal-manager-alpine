@@ -1,8 +1,19 @@
 import os
 import subprocess
+import re
+import platform
 from flask import Flask, render_template, request, redirect
 
 app = Flask(__name__)
+
+kernel_ver = platform.release()
+match = re.search(r'(\d+)\.(\d+)', kernel_ver)
+cmv, csv = (int(match.group(1)), int(match.group(2))) if match else (0, 0)
+TFO = ""
+if cmv >= 3 and csv > 7:
+    tfo = "--tcp-fast-open"
+
+ARGS=os.getenv("ARGS","")
 
 def get_status():
     try:
@@ -42,6 +53,9 @@ def action():
             "--log-without-time",
             "-c", "/.ssconfig.json",
             "--daemonize-pid", "/var/run/sslocal.pid"
+            "-U",
+            TFO,
+            ARGS,
         ])
     
     return redirect('/')

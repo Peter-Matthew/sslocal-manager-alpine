@@ -10,6 +10,8 @@ services:
     #   - '8388:8388/tcp'
     volumes:
       - ./server.ssconfig.json:/.ssconfig.json:ro
+    environment:
+      - DNS_ADDRS=114.114.114.114,8.8.8.8
   ss-manager:
     image: petermatthew/sslocal-manager:alpine-latest
     container_name: ss-manager
