@@ -9,7 +9,7 @@ else
     exec 3>/dev/null
 fi
 
-if [ "$1" = "sslocal" -o "$1" = "ssserver" -o "$1" = "ssmanager" -o "$1" = "ssservice" ]; then
+if [ "$1" = "sslocal" ]; then
     if [ -f "/.ssconfig.json" ]; then
         echo >&3 "$0: Configuration complete; ready for start up"
     else
