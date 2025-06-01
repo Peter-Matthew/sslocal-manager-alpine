@@ -20,4 +20,4 @@ EXPOSE 1080/udp 1080/tcp
 
 STOPSIGNAL SIGINT
 
-CMD [ "sslocal", "--log-without-time", "-c", "/.ssconfig.json" ]
+CMD [ "sslocal" ]

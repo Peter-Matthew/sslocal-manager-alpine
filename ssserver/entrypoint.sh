@@ -29,7 +29,7 @@ if [ "$1" = "sslocal" -o "$1" = "ssserver" -o "$1" = "ssmanager" -o "$1" = "ssse
         TFO='--tcp-fast-open'
         fi
     fi 
-    RT_ARGS="-a nobody -U $DNS $TFO $ARGS"
+    RT_ARGS="--log-without-time -c /.ssconfig.json -a nobody -U $DNS $TFO $ARGS"
 fi
 
 exec $@ $RT_ARGS

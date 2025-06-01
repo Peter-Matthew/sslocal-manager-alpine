@@ -21,4 +21,4 @@ EXPOSE 8388/udp 8388/tcp
 
 STOPSIGNAL SIGINT
 
-CMD [ "ssserver", "--log-without-time", "-c", "/.ssconfig.json" ]
+CMD [ "ssserver" ]
