@@ -52,8 +52,7 @@ def action():
             "sslocal",
             "--log-without-time",
             "-c", "/.ssconfig.json",
-            "--daemonize-pid", "/var/run/sslocal.pid"
-            "-U",
+            "--daemonize-pid", "/var/run/sslocal.pid",
             TFO,
             ARGS,
         ])
