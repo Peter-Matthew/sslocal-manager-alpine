@@ -25,7 +25,7 @@ if [ "$1" = "sslocal" ]; then
         TFO='--tcp-fast-open'
         fi
     fi 
-    RT_ARGS="--log-without-time -c /.ssconfig.json -U $TFO $ARGS"
+    RT_ARGS="--log-without-time -c /.ssconfig.json $TFO $ARGS"
 fi
 
 exec $@ $RT_ARGS
