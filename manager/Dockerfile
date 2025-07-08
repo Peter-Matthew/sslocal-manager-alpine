@@ -17,7 +17,7 @@ RUN echo "https://dl-cdn.alpinelinux.org/alpine/v3.21/community" >> /etc/apk/rep
         /tmp/* \
         /var/tmp/*
 
-RUN pip install flask
+RUN pip install --no-cache-dir flask
 
 WORKDIR /app
 COPY templates/ /app/templates/
