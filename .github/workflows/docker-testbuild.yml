@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - sslocal-rust
+  workflow_dispatch:
 
 jobs:
   build:
