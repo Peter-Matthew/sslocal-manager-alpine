@@ -10,7 +10,12 @@ RUN echo "https://dl-cdn.alpinelinux.org/alpine/v3.21/community" >> /etc/apk/rep
     procps \
  && cp /usr/share/zoneinfo/$TZ /etc/localtime \
  && echo "$TZ" > /etc/timezone \
- && rm -rf /var/cache/apk/*
+ && apk del tzdata \
+ && rm -rf \
+        /var/cache/apk/* \
+        /etc/apk/cache/* \
+        /tmp/* \
+        /var/tmp/*
 
 COPY ./entrypoint.sh /usr/bin/docker-entrypoint.sh
 RUN chmod +x /usr/bin/docker-entrypoint.sh
