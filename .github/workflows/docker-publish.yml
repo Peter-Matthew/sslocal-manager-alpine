@@ -52,14 +52,8 @@ jobs:
           platforms: linux/386,linux/amd64,linux/arm/v7,linux/arm64/v8,linux/ppc64le,linux/s390x
           push: true
           tags: |
-            # ${{ matrix.registry == 'ghcr' && format('ghcr.io/{0}/sslocal-manager:{1}', steps.lowercase-owner.outputs.lower_owner, steps.extract-date.outputs.date)        || format('{0}/sslocal-manager:{1}', secrets.DOCKER_USERNAME, steps.extract-date.outputs.date) }}
-            # ${{ matrix.registry == 'ghcr' && format('ghcr.io/{0}/sslocal-manager:latest', steps.lowercase-owner.outputs.lower_owner)                                      || format('{0}/sslocal-manager:latest', secrets.DOCKER_USERNAME) }}
             ${{ matrix.registry == 'ghcr' && format('ghcr.io/{0}/sslocal-manager:{1}-alpine', steps.lowercase-owner.outputs.lower_owner, steps.extract-date.outputs.date) || format('{0}/sslocal-manager:{1}-alpine', secrets.DOCKER_USERNAME, steps.extract-date.outputs.date) }}
             ${{ matrix.registry == 'ghcr' && format('ghcr.io/{0}/sslocal-manager:latest-alpine', steps.lowercase-owner.outputs.lower_owner)                               || format('{0}/sslocal-manager:latest-alpine', secrets.DOCKER_USERNAME) }}
-            # ${{ matrix.registry == 'ghcr' && format('ghcr.io/{0}/sslocal-manager:python', steps.lowercase-owner.outputs.lower_owner)                                      || format('{0}/sslocal-manager:python', secrets.DOCKER_USERNAME) }}
-            # ${{ matrix.registry == 'ghcr' && format('ghcr.io/{0}/sslocal-manager:python3', steps.lowercase-owner.outputs.lower_owner)                                     || format('{0}/sslocal-manager:python3', secrets.DOCKER_USERNAME) }}
-            # ${{ matrix.registry == 'ghcr' && format('ghcr.io/{0}/sslocal-manager:python3.12', steps.lowercase-owner.outputs.lower_owner)                                  || format('{0}/sslocal-manager:python3.12', secrets.DOCKER_USERNAME) }}
-            # ${{ matrix.registry == 'ghcr' && format('ghcr.io/{0}/sslocal-manager:python3.12.11', steps.lowercase-owner.outputs.lower_owner)                               || format('{0}/sslocal-manager:python3.12.11', secrets.DOCKER_USERNAME) }}
             ${{ matrix.registry == 'ghcr' && format('ghcr.io/{0}/sslocal-manager:python-alpine', steps.lowercase-owner.outputs.lower_owner)                               || format('{0}/sslocal-manager:python-alpine', secrets.DOCKER_USERNAME) }}
             ${{ matrix.registry == 'ghcr' && format('ghcr.io/{0}/sslocal-manager:python3-alpine', steps.lowercase-owner.outputs.lower_owner)                              || format('{0}/sslocal-manager:python3-alpine', secrets.DOCKER_USERNAME) }}
             ${{ matrix.registry == 'ghcr' && format('ghcr.io/{0}/sslocal-manager:python3.12-alpine', steps.lowercase-owner.outputs.lower_owner)                           || format('{0}/sslocal-manager:python3.12-alpine', secrets.DOCKER_USERNAME) }}
