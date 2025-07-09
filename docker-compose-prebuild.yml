@@ -13,7 +13,7 @@ services:
     environment:
       - DNS_ADDRS=114.114.114.114,8.8.8.8
   ss-manager:
-    image: petermatthew/sslocal-manager:alpine-latest
+    image: petermatthew/sslocal-manager:latest-alpine
     container_name: ss-manager
     restart: always
     volumes:
