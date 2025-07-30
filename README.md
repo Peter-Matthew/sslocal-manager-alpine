@@ -7,6 +7,24 @@ A webpage to manage sslocal
 
 Build via Docker Compose, using the Python Flask framework.
 
+# ssserver-manager
+A webpage to manage ssserver
+
+![Docker Pulls](https://img.shields.io/docker/pulls/petermatthew/ssserver-manager)
+![Docker Image Size](https://img.shields.io/docker/image-size/petermatthew/ssserver-manager)
+![Docker Image Version](https://img.shields.io/docker/v/petermatthew/ssserver-manager)
+
+Build via Docker Compose, using the Python Flask framework.
+
+# sslocal-rust
+A backup image to start sslocal
+
+![Docker Pulls](https://img.shields.io/docker/pulls/petermatthew/sslocal-rust)
+![Docker Image Size](https://img.shields.io/docker/image-size/petermatthew/sslocal-rust)
+![Docker Image Version](https://img.shields.io/docker/v/petermatthew/sslocal-rust)
+
+Build via Docker Compose, Source Repo: [shadowsocks-rust](https://github.com/shadowsocks/shadowsocks-rust/).
+
 # ssserver-rust
 A backup image to start ssserver
 
@@ -23,7 +41,7 @@ git clone https://github.com/WilliamPeterMatthew/sslocal-manager-alpine.git -b p
 ```
 
 ## Step 2
-Modify `.ssconfig.json` file like this.
+Modify `manager.local.ssconfig.json` file like this.
 ```
   {
     "server": "ssserver-rust",
@@ -38,7 +56,36 @@ Modify `.ssconfig.json` file like this.
 
 ```
 
-And modify `server.ssconfig.json` file like this.
+Modify `manager.server.ssconfig.json` file like this.
+```
+  {
+    "server": "0.0.0.0",
+    "server_port": 8388,
+    "password": "Password",
+    "timeout": 300,
+    "method": "aes-256-gcm",
+    "mode": "tcp_only"
+  }
+
+
+```
+
+Modify `local.ssconfig.json` file like this.
+```
+  {
+    "server": "ssserver-rust",
+    "server_port": 8388,
+    "local_address": "0.0.0.0",
+    "local_port": 1080,
+    "password": "Password",
+    "timeout": 300,
+    "method": "aes-256-gcm",
+    "mode": "tcp_only"
+  }
+
+```
+
+Modify `server.ssconfig.json` file like this.
 ```
   {
     "server": "0.0.0.0",
@@ -101,8 +148,8 @@ server {
         proxy_set_header X-Forwarded-Proto $scheme;
     }
 
-    error_log /var/log/nginx/sslocal_manager_error.log;
-    access_log /var/log/nginx/sslocal_manager_access.log;
+    error_log /var/log/nginx/ss_manager_error.log;
+    access_log /var/log/nginx/ss_manager_access.log;
 }
 
 ```
