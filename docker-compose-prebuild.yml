@@ -1,12 +1,12 @@
 version: '3'
 
 services:
-  ss-manager:
+  sslocal-manager-rust:
     image: petermatthew/sslocal-manager:latest-alpine
-    container_name: ss-manager
+    container_name: sslocal-manager-rust
     restart: always
     volumes:
-      - ./.ssconfig.json:/.ssconfig.json:ro
+      - ./manager.local.ssconfig.json:/.ssconfig.json:ro
     ports:
       - "1080:1080/udp"   # ss-local 代理端口
       - "1080:1080/tcp"   # ss-local 代理端口
