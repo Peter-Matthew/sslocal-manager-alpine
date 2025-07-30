@@ -7,9 +7,7 @@ A backup image to start ssserver
 
 Build via Docker Compose, Source Repo: [shadowsocks-rust](https://github.com/shadowsocks/shadowsocks-rust/).
 
-> There is a solution to deploy ssserver-rust and ss-manager to the local machine at the same time, located in the branch [proxy_local](https://github.com/WilliamPeterMatthew/sslocal-manager-alpine/tree/proxy_local)
-> 
-> There is a solution to deploy ssserver-rust and sslocal-rust to the local machine at the same time, located in the branch [proxy-rust](https://github.com/WilliamPeterMatthew/sslocal-manager-alpine/tree/proxy-rust)
+> There is a solution to deploy local and server to the local machine at the same time, located in the branch [proxy_local](https://github.com/WilliamPeterMatthew/sslocal-manager-alpine/tree/proxy_local)
 
 ## Step 1
 Clone this repo.
