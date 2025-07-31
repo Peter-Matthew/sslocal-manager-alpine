@@ -15,7 +15,7 @@ Clone this repo.
 git clone https://github.com/WilliamPeterMatthew/sslocal-manager-alpine.git -b ssserver-rust
 ```
 ## Step 2
-Modify `.ssconfig.json` file like this.
+Modify `server.ssconfig.json` file like this.
 ```
   {
     "server": "0.0.0.0",
