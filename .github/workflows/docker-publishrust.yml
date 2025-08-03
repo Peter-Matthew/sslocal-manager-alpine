@@ -1,0 +1,82 @@
+name: Build and Push Docker Image
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build-push:
+    runs-on: ubuntu-latest
+    env:
+      TZ: Asia/Shanghai
+    strategy:
+      matrix:
+        registry: ['ghcr', 'dockerhub']
+
+    permissions:
+      contents: read
+      packages: write
+      attestations: write
+      id-token: write
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: master
+
+      - uses: docker/setup-buildx-action@v3
+
+      - name: Login to ${{ matrix.registry }}
+        uses: docker/login-action@v3
+        with:
+          username: ${{ matrix.registry == 'ghcr' && github.repository_owner || secrets.DOCKER_USERNAME }}
+          password: ${{ matrix.registry == 'ghcr' && secrets.GITHUB_TOKEN || secrets.DOCKER_PASSWORD }}
+          registry: ${{ matrix.registry == 'ghcr' && 'ghcr.io' || '' }}
+
+      - name: Extract current date
+        id: extract-date
+        run: |
+          DATE=$(date +%Y%m%d)
+          echo "date=$DATE" >> $GITHUB_OUTPUT
+
+      - name: Process lowercase owner
+        id: lowercase-owner
+        run: |
+          LOWER_OWNER=$(echo "$GITHUB_REPOSITORY_OWNER" | tr '[:upper:]' '[:lower:]')
+          echo "lower_owner=$LOWER_OWNER" >> $GITHUB_OUTPUT
+
+      - name: Build and push
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          file: ./Dockerfile
+          platforms: linux/386,linux/amd64,linux/arm/v7,linux/arm64/v8,linux/ppc64le,linux/s390x
+          push: true
+          tags: |
+            ${{ matrix.registry == 'ghcr' && format('ghcr.io/{0}/ssserver-manager-rust:{1}', steps.lowercase-owner.outputs.lower_owner, steps.extract-date.outputs.date)        || format('{0}/ssserver-manager-rust:{1}', secrets.DOCKER_USERNAME, steps.extract-date.outputs.date) }}
+            ${{ matrix.registry == 'ghcr' && format('ghcr.io/{0}/ssserver-manager-rust:latest', steps.lowercase-owner.outputs.lower_owner)                                      || format('{0}/ssserver-manager-rust:latest', secrets.DOCKER_USERNAME) }}
+            ${{ matrix.registry == 'ghcr' && format('ghcr.io/{0}/ssserver-manager-rust:{1}-alpine', steps.lowercase-owner.outputs.lower_owner, steps.extract-date.outputs.date) || format('{0}/ssserver-manager-rust:{1}-alpine', secrets.DOCKER_USERNAME, steps.extract-date.outputs.date) }}
+            ${{ matrix.registry == 'ghcr' && format('ghcr.io/{0}/ssserver-manager-rust:latest-alpine', steps.lowercase-owner.outputs.lower_owner)                               || format('{0}/ssserver-manager-rust:latest-alpine', secrets.DOCKER_USERNAME) }}
+            ${{ matrix.registry == 'ghcr' && format('ghcr.io/{0}/ssserver-manager-rust:python', steps.lowercase-owner.outputs.lower_owner)                                      || format('{0}/ssserver-manager-rust:python', secrets.DOCKER_USERNAME) }}
+            ${{ matrix.registry == 'ghcr' && format('ghcr.io/{0}/ssserver-manager-rust:python3', steps.lowercase-owner.outputs.lower_owner)                                     || format('{0}/ssserver-manager-rust:python3', secrets.DOCKER_USERNAME) }}
+            ${{ matrix.registry == 'ghcr' && format('ghcr.io/{0}/ssserver-manager-rust:python3.12', steps.lowercase-owner.outputs.lower_owner)                                  || format('{0}/ssserver-manager-rust:python3.12', secrets.DOCKER_USERNAME) }}
+            ${{ matrix.registry == 'ghcr' && format('ghcr.io/{0}/ssserver-manager-rust:python3.12.11', steps.lowercase-owner.outputs.lower_owner)                               || format('{0}/ssserver-manager-rust:python3.12.11', secrets.DOCKER_USERNAME) }}
+            ${{ matrix.registry == 'ghcr' && format('ghcr.io/{0}/ssserver-manager-rust:python-alpine', steps.lowercase-owner.outputs.lower_owner)                               || format('{0}/ssserver-manager-rust:python-alpine', secrets.DOCKER_USERNAME) }}
+            ${{ matrix.registry == 'ghcr' && format('ghcr.io/{0}/ssserver-manager-rust:python3-alpine', steps.lowercase-owner.outputs.lower_owner)                              || format('{0}/ssserver-manager-rust:python3-alpine', secrets.DOCKER_USERNAME) }}
+            ${{ matrix.registry == 'ghcr' && format('ghcr.io/{0}/ssserver-manager-rust:python3.12-alpine', steps.lowercase-owner.outputs.lower_owner)                           || format('{0}/ssserver-manager-rust:python3.12-alpine', secrets.DOCKER_USERNAME) }}
+            ${{ matrix.registry == 'ghcr' && format('ghcr.io/{0}/ssserver-manager-rust:python3.12.11-alpine', steps.lowercase-owner.outputs.lower_owner)                        || format('{0}/ssserver-manager-rust:python3.12.11-alpine', secrets.DOCKER_USERNAME) }}
+            ${{ matrix.registry == 'ghcr' && format('ghcr.io/{0}/ssserver-manager-rust:python-alpine3', steps.lowercase-owner.outputs.lower_owner)                              || format('{0}/ssserver-manager-rust:python-alpine3', secrets.DOCKER_USERNAME) }}
+            ${{ matrix.registry == 'ghcr' && format('ghcr.io/{0}/ssserver-manager-rust:python3-alpine3', steps.lowercase-owner.outputs.lower_owner)                             || format('{0}/ssserver-manager-rust:python3-alpine3', secrets.DOCKER_USERNAME) }}
+            ${{ matrix.registry == 'ghcr' && format('ghcr.io/{0}/ssserver-manager-rust:python3.12-alpine3', steps.lowercase-owner.outputs.lower_owner)                          || format('{0}/ssserver-manager-rust:python3.12-alpine3', secrets.DOCKER_USERNAME) }}
+            ${{ matrix.registry == 'ghcr' && format('ghcr.io/{0}/ssserver-manager-rust:python3.12.11-alpine3', steps.lowercase-owner.outputs.lower_owner)                       || format('{0}/ssserver-manager-rust:python3.12.11-alpine3', secrets.DOCKER_USERNAME) }}
+            ${{ matrix.registry == 'ghcr' && format('ghcr.io/{0}/ssserver-manager-rust:python-alpine3.21', steps.lowercase-owner.outputs.lower_owner)                           || format('{0}/ssserver-manager-rust:python-alpine3.21', secrets.DOCKER_USERNAME) }}
+            ${{ matrix.registry == 'ghcr' && format('ghcr.io/{0}/ssserver-manager-rust:python3-alpine3.21', steps.lowercase-owner.outputs.lower_owner)                          || format('{0}/ssserver-manager-rust:python3-alpine3.21', secrets.DOCKER_USERNAME) }}
+            ${{ matrix.registry == 'ghcr' && format('ghcr.io/{0}/ssserver-manager-rust:python3.12-alpine3.21', steps.lowercase-owner.outputs.lower_owner)                       || format('{0}/ssserver-manager-rust:python3.12-alpine3.21', secrets.DOCKER_USERNAME) }}
+            ${{ matrix.registry == 'ghcr' && format('ghcr.io/{0}/ssserver-manager-rust:python3.12.11-alpine3.21', steps.lowercase-owner.outputs.lower_owner)                    || format('{0}/ssserver-manager-rust:python3.12.11-alpine3.21', secrets.DOCKER_USERNAME) }}
+            ${{ matrix.registry == 'ghcr' && format('ghcr.io/{0}/ssserver-manager-rust:python-alpine3.21.3', steps.lowercase-owner.outputs.lower_owner)                         || format('{0}/ssserver-manager-rust:python-alpine3.21.3', secrets.DOCKER_USERNAME) }}
+            ${{ matrix.registry == 'ghcr' && format('ghcr.io/{0}/ssserver-manager-rust:python3-alpine3.21.3', steps.lowercase-owner.outputs.lower_owner)                        || format('{0}/ssserver-manager-rust:python3-alpine3.21.3', secrets.DOCKER_USERNAME) }}
+            ${{ matrix.registry == 'ghcr' && format('ghcr.io/{0}/ssserver-manager-rust:python3.12-alpine3.21.3', steps.lowercase-owner.outputs.lower_owner)                     || format('{0}/ssserver-manager-rust:python3.12-alpine3.21.3', secrets.DOCKER_USERNAME) }}
+            ${{ matrix.registry == 'ghcr' && format('ghcr.io/{0}/ssserver-manager-rust:python3.12.11-alpine3.21.3', steps.lowercase-owner.outputs.lower_owner)                  || format('{0}/ssserver-manager-rust:python3.12.11-alpine3.21.3', secrets.DOCKER_USERNAME) }}
+            ${{ matrix.registry == 'ghcr' && format('ghcr.io/{0}/ssserver-manager-rust:alpine', steps.lowercase-owner.outputs.lower_owner)                                      || format('{0}/ssserver-manager-rust:alpine', secrets.DOCKER_USERNAME) }}
+            ${{ matrix.registry == 'ghcr' && format('ghcr.io/{0}/ssserver-manager-rust:alpine3', steps.lowercase-owner.outputs.lower_owner)                                     || format('{0}/ssserver-manager-rust:alpine3', secrets.DOCKER_USERNAME) }}
+            ${{ matrix.registry == 'ghcr' && format('ghcr.io/{0}/ssserver-manager-rust:alpine3.21', steps.lowercase-owner.outputs.lower_owner)                                  || format('{0}/ssserver-manager-rust:alpine3.21', secrets.DOCKER_USERNAME) }}
+            ${{ matrix.registry == 'ghcr' && format('ghcr.io/{0}/ssserver-manager-rust:alpine3.21.3', steps.lowercase-owner.outputs.lower_owner)                                || format('{0}/ssserver-manager-rust:alpine3.21.3', secrets.DOCKER_USERNAME) }}
