@@ -2,7 +2,7 @@ version: '3'
 
 services:
   sslocal-manager-rust:
-    image: petermatthew/sslocal-manager:latest-alpine
+    image: petermatthew/sslocal-manager-rust
     container_name: sslocal-manager-rust
     restart: always
     volumes:
