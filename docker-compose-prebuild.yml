@@ -22,7 +22,7 @@ services:
   #   volumes:
   #     - ./local.ssconfig.json:/.ssconfig.json:ro
   # ssserver-manager-rust:
-  #   image: petermatthew/ssserver-manager:latest-alpine
+  #   image: petermatthew/ssserver-manager-rust
   #   container_name: ssserver-manager-rust
   #   restart: always
   #   volumes:
@@ -32,7 +32,7 @@ services:
   #     # - "8388:8388/tcp"   # ss-server 代理端口
   #     - "6000:6000"   # 管理界面端口
   sslocal-manager-rust:
-    image: petermatthew/sslocal-manager:latest-alpine
+    image: petermatthew/sslocal-manager-rust
     container_name: sslocal-manager-rust
     restart: always
     volumes:
