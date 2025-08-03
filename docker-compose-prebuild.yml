@@ -2,7 +2,7 @@ version: '3'
 
 services:
   ssserver-manager-rust:
-    image: petermatthew/ssserver-manager:latest-alpine
+    image: petermatthew/ssserver-manager-rust
     container_name: ssserver-manager-rust
     restart: always
     volumes:
