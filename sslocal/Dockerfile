@@ -1,9 +1,9 @@
-FROM alpine:3.21
+FROM alpine:3.22.1
 
 ENV TZ=Asia/Shanghai
 ENV ARGS=
 
-RUN echo "https://dl-cdn.alpinelinux.org/alpine/v3.21/community" >> /etc/apk/repositories && \
+RUN echo "https://dl-cdn.alpinelinux.org/alpine/v3.22/community" >> /etc/apk/repositories && \
     apk update && apk add --no-cache \
     tzdata \
     shadowsocks-rust \
