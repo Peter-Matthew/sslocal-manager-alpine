@@ -49,12 +49,12 @@ jobs:
         with:
           context: .
           file: ./Dockerfile
-          platforms: linux/386,linux/amd64,linux/arm/v7,linux/arm64/v8,linux/ppc64le,linux/s390x
+          platforms: linux/386,linux/amd64,linux/arm/v7,linux/arm64/v8,linux/ppc64le,linux/s390x,linux/riscv64
           push: true
           tags: |
             ${{ matrix.registry == 'ghcr' && format('ghcr.io/{0}/ssserver:{1}-alpine', steps.lowercase-owner.outputs.lower_owner, steps.extract-date.outputs.date) || format('{0}/ssserver:{1}-alpine', secrets.DOCKER_USERNAME, steps.extract-date.outputs.date) }}
             ${{ matrix.registry == 'ghcr' && format('ghcr.io/{0}/ssserver:latest-alpine', steps.lowercase-owner.outputs.lower_owner)                               || format('{0}/ssserver:latest-alpine', secrets.DOCKER_USERNAME) }}
             ${{ matrix.registry == 'ghcr' && format('ghcr.io/{0}/ssserver:alpine', steps.lowercase-owner.outputs.lower_owner)                                      || format('{0}/ssserver:alpine', secrets.DOCKER_USERNAME) }}
             ${{ matrix.registry == 'ghcr' && format('ghcr.io/{0}/ssserver:alpine3', steps.lowercase-owner.outputs.lower_owner)                                     || format('{0}/ssserver:alpine3', secrets.DOCKER_USERNAME) }}
-            ${{ matrix.registry == 'ghcr' && format('ghcr.io/{0}/ssserver:alpine3.21', steps.lowercase-owner.outputs.lower_owner)                                  || format('{0}/ssserver:alpine3.21', secrets.DOCKER_USERNAME) }}
-            ${{ matrix.registry == 'ghcr' && format('ghcr.io/{0}/ssserver:alpine3.21.3', steps.lowercase-owner.outputs.lower_owner)                                || format('{0}/ssserver:alpine3.21.3', secrets.DOCKER_USERNAME) }}
+            ${{ matrix.registry == 'ghcr' && format('ghcr.io/{0}/ssserver:alpine3.22', steps.lowercase-owner.outputs.lower_owner)                                  || format('{0}/ssserver:alpine3.22', secrets.DOCKER_USERNAME) }}
+            ${{ matrix.registry == 'ghcr' && format('ghcr.io/{0}/ssserver:alpine3.22.1', steps.lowercase-owner.outputs.lower_owner)                                || format('{0}/ssserver:alpine3.22.1', secrets.DOCKER_USERNAME) }}
