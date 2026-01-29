@@ -7,8 +7,6 @@ A backup image to start sslocal
 
 Build via Docker Compose, Source Repo: [shadowsocks-rust](https://github.com/shadowsocks/shadowsocks-rust/).
 
-> There is a solution to deploy local and server to the local machine at the same time, located in the branch [proxy_local](https://github.com/WilliamPeterMatthew/sslocal-manager-alpine/tree/proxy_local)
-
 ## Step 1
 Clone this repo.
 ```bash
