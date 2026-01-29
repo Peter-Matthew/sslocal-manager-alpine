@@ -1,13 +1,11 @@
-# ssserver-manager
-A webpage to manage ss-server
+# ssserver-manager-rust
+A webpage to manage ssserver
 
-![Docker Pulls](https://img.shields.io/docker/pulls/petermatthew/ssserver-manager)
-![Docker Image Size](https://img.shields.io/docker/image-size/petermatthew/ssserver-manager)
-![Docker Image Version](https://img.shields.io/docker/v/petermatthew/ssserver-manager)
+![Docker Pulls](https://img.shields.io/docker/pulls/petermatthew/ssserver-manager-rust)
+![Docker Image Size](https://img.shields.io/docker/image-size/petermatthew/ssserver-manager-rust)
+![Docker Image Version](https://img.shields.io/docker/v/petermatthew/ssserver-manager-rust)
 
 Build via Docker Compose, using the Python Flask framework.
-
-> There is a solution to deploy local and server to the local machine at the same time, located in the branch [proxy_local](https://github.com/WilliamPeterMatthew/sslocal-manager-alpine/tree/proxy_local)
 
 ## Step 1
 Clone this repo.
